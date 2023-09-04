@@ -35,17 +35,19 @@
     <section class="vh-100 bg-image"
              style="background-image: url('https://www.womenbuildingaustralia.com.au/sites/default/files/images/Poly_BG_Grad%20%281%29_0_1.png');">
         <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-            <div class="container h-100">
+            <div class="container h-100" style="max-width: 645px;">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                         <div class="card" style="border-radius: 15px;">
                             <div class="card-body p-5">
                                 <h2 class="text-uppercase text-center mb-5">Добавление города</h2>
                                 <form>
+                                    <div id="map"></div>
                                     <div class="form-outline mb-4">
                                         <input th:value="${name}" type="text" name="name" autofocus required
-                                               id="form3Example1cg"
+                                               id="addressInput"
                                                class="form-control form-control-lg"/>
+
                                         <label class="form-label" for="form3Example1cg">Название города:</label>
                                     </div>
 
@@ -93,3 +95,51 @@
 </form>
 </body>
 </html>
+<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+
+<script>
+    var map;
+    var addressInput = document.getElementById("addressInput"); // Получаем ссылку на элемент input
+
+    DG.then(function () {
+        map = DG.map('map', {
+            center: [42.8746, 74.5698], // Координаты для Бишкека
+            zoom: 13
+        });
+
+        // Обработчик события клика на карту
+        map.on('click', function (e) {
+            var clickedLatLng = e.latlng; // Получаем координаты места, на которое кликнули
+            var latitude = clickedLatLng.lat;
+            var longitude = clickedLatLng.lng;
+
+            // Выполняем обратное геокодирование
+            var geocodingUrl = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + latitude + '&lon=' + longitude;
+
+            fetch(geocodingUrl)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    var address = data.display_name;
+
+                    // Обновляем значение элемента input
+                    addressInput.value = address;
+                });
+
+            // Добавляем маркер на карту
+            DG.marker([latitude, longitude]).addTo(map).bindPopup('Вы кликнули по мне!');
+        });
+
+        // Получение местоположения пользователя
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+
+                // Добавление маркера для местоположения пользователя
+                DG.marker([latitude, longitude]).addTo(map).bindPopup('Ваше местоположение!');
+            });
+        }
+    });
+</script>

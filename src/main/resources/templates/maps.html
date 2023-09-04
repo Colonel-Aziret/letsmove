@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Моя карта</title>
+    <style>
+        /* Определите размеры контейнера карты */
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<h1>Моя карта</h1>
+<div id="map"></div>
+
+<!-- Добавьте элемент input -->
+<input type="text" id="addressInput" placeholder="Адрес">
+
+<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+<script>
+    var map;
+    var addressInput = document.getElementById("addressInput"); // Получаем ссылку на элемент input
+
+    DG.then(function () {
+        map = DG.map('map', {
+            center: [42.8746, 74.5698], // Координаты для Бишкека
+            zoom: 13
+        });
+
+        // Обработчик события клика на карту
+        map.on('click', function (e) {
+            var clickedLatLng = e.latlng; // Получаем координаты места, на которое кликнули
+            var latitude = clickedLatLng.lat;
+            var longitude = clickedLatLng.lng;
+
+            // Выполняем обратное геокодирование
+            var geocodingUrl = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + latitude + '&lon=' + longitude;
+
+            fetch(geocodingUrl)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    var address = data.display_name;
+
+                    // Обновляем значение элемента input
+                    addressInput.value = address;
+                });
+
+            // Добавляем маркер на карту
+            DG.marker([latitude, longitude]).addTo(map).bindPopup('Вы кликнули по мне!');
+        });
+
+        // Получение местоположения пользователя
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
+
+                // Добавление маркера для местоположения пользователя
+                DG.marker([latitude, longitude]).addTo(map).bindPopup('Ваше местоположение!');
+            });
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+

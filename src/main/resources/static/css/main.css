@@ -24,6 +24,11 @@
     background: #31c0ff; /* Синий цвет фона */
     color: black; /* Белые буквы */
 }
+#map {
+    height: 140px;
+    width: 100%;
+    top: -24px;
+}
 
 
 .header {
