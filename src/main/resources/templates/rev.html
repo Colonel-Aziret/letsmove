@@ -1,4 +1,7 @@
-
+<meta charset="UTF-8">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
@@ -8,17 +11,30 @@
   <nav style="background-color: rgba(0, 128, 128, 0.4);" >
     <div class="container">
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo white-text">TravelVille</a>
+        <a href="#!" class="brand-logo white-text">LET'S MOVE</a>
+
+
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li>
-            <a href="#home" class="white-text">Home</a>
+            <a href="/get_all_attraction" class="white-text">Достопримечательности</a>
           </li>
           <li>
-            <a href="#search" class="white-text">Search</a>
+            <a href="/get_all_place" class="white-text">Заведения</a>
           </li>
-          <!-- Добавьте класс "white-text" к другим пунктам меню, если нужно -->
-          <!-- ... -->
+          <li>
+            <a href="/get_all_tour" class="white-text">Туры</a>
+          </li>
+          <li>
+<!--          <li sec:authorize="isAnonymous()"><a href="/login" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
+<!--          <li sec:authorize="hasAuthority('ADMIN')"><a href="/adminMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
+<!--          <li sec:authorize="hasAuthority('MANAGER')"><a href="/managerMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
+<!--          <li sec:authorize="hasAuthority('GUIDE')"><a href="/guideMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
+<!--          <li sec:authorize="hasAuthority('USER')"><a href="/userMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
+
+
+          </li>
+
         </ul>
       </div>
     </div>
@@ -47,7 +63,7 @@
 <section class="slider">
   <ul class="slides">
     <li>
-      <img src="https://pro-agent.kz/userfiles/upload/country/kyrgyzstan/kyrgyzstan.jpg" alt="">
+      <img src="https://img.geliophoto.com/bishkek/08_bishkek.jpg" alt="">
       <div class="caption center-align">
         <h2>Take Your Dream Vacation</h2>
         <h5 class="light grey-text text-lighten-3 hide-on-small-only">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam non illo earum cumque id est!</h5>
@@ -55,7 +71,7 @@
       </div>
     </li>
     <li>
-      <img src="https://image.ibb.co/mn1egc/resort2.jpg" alt="">
+      <img src="https://img.geliophoto.com/bishkek/00_bishkek.jpg" alt="">
       <div class="caption left-align">
         <h2>We Work With All Budgets</h2>
         <h5 class="light grey-text text-lighten-3 hide-on-small-only">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam non illo earum cumque id est!</h5>
@@ -63,7 +79,7 @@
       </div>
     </li>
     <li>
-      <img src="https://image.ibb.co/mbCVnH/resort3.jpg" alt="">
+      <img src="https://tripplanet.ru/wp-content/uploads/asia/kyrgyzstan/bishkek/dostoprimechatelnosti-bishkeka.jpg" alt="">
       <div class="caption right-align">
         <h2>Group & Individual Getaways</h2>
         <h5 class="light grey-text text-lighten-3 hide-on-small-only">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam non illo earum cumque id est!</h5>
@@ -73,7 +89,7 @@
   </ul>
 </section>
 
-/<!-- Section: Search -->
+
 <section id="search" class="section section-search teal darken-1 white-text center scrollspy">
   <div class="container">
     <div class="row">
@@ -300,7 +316,7 @@
 
 <!-- Footer -->
 <footer class="section teal darken-2 white-text center">
-  <p class="flow-text">Travelville &copy; 2018</p>
+  <p class="flow-text"> <center>По всем вопросам, пишите нам на <a href="mailto:letsmovekgz@gmail.com">почту</a></center></p>
 </footer>
 <style>
   .slider .btn {
