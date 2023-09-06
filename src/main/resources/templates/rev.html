@@ -25,16 +25,11 @@
           <li>
             <a href="/get_all_tour" class="white-text">Туры</a>
           </li>
-          <li>
-<!--          <li sec:authorize="isAnonymous()"><a href="/login" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
-<!--          <li sec:authorize="hasAuthority('ADMIN')"><a href="/adminMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
-<!--          <li sec:authorize="hasAuthority('MANAGER')"><a href="/managerMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
-<!--          <li sec:authorize="hasAuthority('GUIDE')"><a href="/guideMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
-<!--          <li sec:authorize="hasAuthority('USER')"><a href="/userMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
-
-
-          </li>
-
+          <li sec:authorize="isAnonymous()"><a href="/login" class="nav-link px-2 link-dark">Мой профиль</a></li>
+          <li sec:authorize="hasAuthority('ADMIN')"><a href="/adminMain" class="nav-link px-2 link-dark">Мой профиль</a></li>
+          <li sec:authorize="hasAuthority('MANAGER')"><a href="/managerMain" class="nav-link px-2 link-dark">Мой профиль</a></li>
+          <li sec:authorize="hasAuthority('GUIDE')"><a href="/guideMain" class="nav-link px-2 link-dark">Мой профиль</a></li>
+          <li sec:authorize="hasAuthority('USER')"><a href="/userMain" class="nav-link px-2 link-dark">Мой профиль</a></li>
         </ul>
       </div>
     </div>
@@ -288,28 +283,31 @@
           <li class="collection-item">Miami FL, 55555</li>
         </ul>
       </div>
-      <div class="col s12 m6">
-        <div class="card-panel grey lighten-3">
-          <h5>Please fill out this form</h5>
-          <div class="input-field">
-            <input type="text" placeholder="Name" id="name">
-            <label for="name">Name</label>
+      <form th:action="@{/register}" method="post">
+        <div class="col s12 m6">
+          <div class="card-panel grey lighten-3">
+            <h5>Please fill out this form</h5>
+            <div class="input-field">
+              <input type="text" placeholder="Login" id="login" name="login" th:value="${login}">
+              <label for="login">Login</label>
+            </div>
+            <div class="input-field">
+              <input type="email" placeholder="Email" id="email" name="email" th:value="${email}">
+              <label for="email">Email</label>
+            </div>
+            <div class="input-field">
+              <input type="password" placeholder="Password" id="password" name="password" th:value="${password}">
+              <label for="password">Password</label>
+            </div>
+            <p class="text-center text-muted mt-5 mb-0">Have already an account? <a
+                    th:href="@{/login}"
+                    class="fw-bold text-body"><u>Login
+              here</u></a></p>
+            <input type="submit" value="Submit" class="btn">
           </div>
-          <div class="input-field">
-            <input type="email" placeholder="Email" id="email">
-            <label for="email">Email</label>
-          </div>
-          <div class="input-field">
-            <input type="text" placeholder="Phone" id="phone">
-            <label for="phone">Phone</label>
-          </div>
-          <div class="input-field">
-            <textarea class="materialize-textarea" placeholder="Enter Message" id="message"></textarea>
-            <label for="message">Message</label>
-          </div>
-          <input type="submit" value="Submit" class="btn">
         </div>
-      </div>
+      </form>
+
     </div>
   </div>
 </section>

@@ -35,7 +35,7 @@ public class UserController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String login() {
-        return "main";
+        return "rev";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -59,22 +59,22 @@ public class UserController {
         return "userMain";
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public ModelAndView register() {
-        ModelAndView modelAndView = new ModelAndView("registration");
-        modelAndView.addObject("user", new Users());
-        return modelAndView;
-    }
+//    @RequestMapping(value = "/register", method = RequestMethod.GET)
+//    public ModelAndView register() {
+//        ModelAndView modelAndView = new ModelAndView("registration");
+//        modelAndView.addObject("user", new Users());
+//        return modelAndView;
+//    }
 
 
-    @PostMapping(value = "/registration")
+    @PostMapping(value = "/register")
     public String registration(@ModelAttribute(name = "user") Users user) {
         try {
             ModelAndView model = new ModelAndView();
             this.userService.save(user);
             return "login";
         } catch (Exception e) {
-            return "registration";
+            return "rev";
         }
     }
 
