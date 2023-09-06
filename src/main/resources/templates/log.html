@@ -2,70 +2,71 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <!-- Добавьте любые другие стили, которые вам нужны для страницы входа -->
-  <style>
-    /* Стиль для установки фоновой картинки */
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Добавьте любые другие стили, которые вам нужны для страницы входа -->
+    <style>
+        /* Стиль для установки фоновой картинки */
 
-    body {
-      background-image: url('https://img.geliophoto.com/bishkek/00_bishkek.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+        body {
+            background-image: url('https://img.geliophoto.com/bishkek/00_bishkek.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-    /* Стиль для формы */
-    .login-form {
-      width: 100%;
-      max-width: 600px; /* Измените максимальную ширину, чтобы сделать форму более широкой */
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 25px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-      margin-left: 25%;
-    }
+        /* Стиль для формы */
+        .login-form {
+            width: 100%;
+            max-width: 600px; /* Измените максимальную ширину, чтобы сделать форму более широкой */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            margin-left: 25%;
+        }
 
-    /* Стиль для центрирования формы */
-    .center-align-form {
-      text-align: center;
-    }
-  </style>
+        /* Стиль для центрирования формы */
+        .center-align-form {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <!-- Навигационное меню (может быть таким же, как и на главной странице) -->
-
-<div class="container">
-  <div class="row">
-    <div class="col s12">
-      <div class="login-form center-align-form">
-        <h4>Вход</h4>
-        <form>
-          <div class="input-field">
-            <input type="text" id="username" name="username">
-            <label for="username">Имя пользователя</label>
-          </div>
-          <div class="input-field">
-            <input type="password" id="password" name="password">
-            <label for="password">Пароль</label>
-          </div>
-          <button class="btn waves-effect waves-light" type="submit">Войти</button>
-        </form>
-        <p class="text-center text-muted mt-5 mb-0"><a
-                th:href="@{/forgotPassword}"
-          <input type="button" value="Forgot Password?"
-                 class="fw-bold text-body"><u>Forgot Password?</u></a></p>
-        <p class="text-center text-muted mt-5 mb-0">Don't have an account yet? &nbsp;<a
-                th:href="@{/register}"
-                class="fw-bold text-body"><u>Registration
-          here</u></a></p>
-      </div>
+<form th:action="@{/login}" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <div class="login-form center-align-form">
+                    <h4>Вход</h4>
+                    <form>
+                        <div class="input-field">
+                            <input th:value="${login}" id="login" type="text" name="login" autofocus required>
+                            <label for="login">Имя пользователя</label>
+                        </div>
+                        <div class="input-field">
+                            <input th:value="${password}" id="password" type="password" name="password" autofocus required>
+                            <label for="password">Пароль</label>
+                        </div>
+                        <button class="btn waves-effect waves-light" type="submit">Войти</button>
+                    </form>
+                    <p class="text-center text-muted mt-5 mb-0"><a
+                            th:href="@{/forgotPassword}"
+                        <input type="button" value="Forgot Password?"
+                               class="fw-bold text-body"><u>Forgot Password?</u></a></p>
+                    <p class="text-center text-muted mt-5 mb-0">Don't have an account yet? &nbsp;<a
+                            th:href="@{/register}"
+                            class="fw-bold text-body"><u>Registration
+                        here</u></a></p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+</form>
 <!-- Содержимое страницы входа -->
 <!--<div class="container">-->
 <!--  <div class="row">-->
@@ -90,7 +91,6 @@
 <!--  </div>-->
 <!--  </div>-->
 <!--</div>-->
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
