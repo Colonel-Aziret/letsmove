@@ -8,7 +8,7 @@
     <!-- Add Materialize JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <div class="navbar-fixed">
-        <nav style="background-color: rgba(0, 128, 128, 0.4);">
+        <nav style="background-color: #09181F;">
             <div class="container">
                 <div class="nav-wrapper">
                     <a href="#!" class="brand-logo white-text">LET'S MOVE</a>
@@ -17,7 +17,7 @@
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li>
-                        <a href="/get_all_attraction" class="white-text">Достопримечательности</a>
+                            <a href="/get_all_attraction" class="white-text">Достопримечательности</a>
                         </li>
                         <li>
                             <a href="/get_all_place" class="white-text">Заведения</a>
@@ -26,7 +26,7 @@
                             <a href="/get_all_tour" class="white-text">Туры</a>
                         </li>
                         <li>
-                        <a href="/add_place" class="white-text">Новое место</a>
+                            <a href="/add_place" class="white-text">Новое место</a>
                         </li>
                         <li>
                             <a href="/check_place" class="white-text">Проверка мест</a>
@@ -73,41 +73,7 @@
         </li>
     </ul>
 
-    <!-- Section: Slider -->
-    <section class="slider">
-        <ul class="slides">
-            <li>
-                <img src="https://img.geliophoto.com/bishkek/08_bishkek.jpg" alt="">
-                <div class="caption center-align">
-                    <span class="animation-1"><h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h1></span>
-                    <span class="animation-2">to LET'S MOVE</span>
 
-
-                </div>
-            </li>
-
-
-        </ul>
-    </section>
-
-
-    <section id="search" class="section section-search teal darken-1 white-text center scrollspy">
-        <div class="container">
-            <div class="row">
-                <!--      <div class="col s12">-->
-                <!--        <h3>Search Destinations</h3>-->
-                <!--        <div class="input-field">-->
-                <!--          <input class="white grey-text autocomplete" placeholder="Aruba, Cancun, etc..." type="text" id="autocomplete-input">-->
-                <!--        </div>-->
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <!-- Section: Icon Boxes -->
-
-
-    <!-- Section: Popular -->
     <section id="popular" class="section section-popular scrollspy">
         <div class="container">
             <div class="row">
@@ -125,6 +91,9 @@
                                 delectus?
                             </p>
                         </div>
+                        <div class="card-action">
+                            <a href="#" class="btn waves-effect waves-light">Подробнее</a>
+                        </div>
                     </div>
                 </div>
                 <div class="col s12 m4">
@@ -138,6 +107,9 @@
                                 corporis laudantium, architecto
                                 delectus?
                             </p>
+                        </div>
+                        <div class="card-action">
+                            <a href="#" class="btn waves-effect waves-light">Подробнее</a>
                         </div>
                     </div>
                 </div>
@@ -153,6 +125,9 @@
                                 delectus?
                             </p>
                         </div>
+                        <div class="card-action">
+                            <a href="#" class="btn waves-effect waves-light">Подробнее</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -160,33 +135,11 @@
         </div>
     </section>
 
-    <!-- Section: Follow -->
 
 
 
 
-
-
-
-    <footer class="section teal darken-2 white-text center">
-        <p class="flow-text">
-        <center>По всем вопросам, пишите нам на <a href="mailto:letsmovekgz@gmail.com">почту</a></center>
-        </p>
-    </footer>
     <style>
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
 
         .dropdown-content a {
             color: black;
@@ -208,6 +161,7 @@
             color: #fff;
             border-radius: 5px;
         }
+
         .nav-item {
             background-color: #f8f9fa;
             color: #000;
@@ -243,44 +197,10 @@
                 max-width: 90%; /* Уменьшите ширину для мобильных устройств */
             }
         }
+        .teal.darken-2 {
+            background-color: #09181F !important;
+        }
 
 
     </style>
-    <script>
-        // Side Menu
-        const sideNav = document.querySelector('.sidenav');
-        M.Sidenav.init(sideNav, {});
 
-        // Slider
-        const slider = document.querySelector('.slider');
-        M.Slider.init(slider, {
-            indicators: false,
-            height: 500,
-            transition: 500,
-            interval: 6000
-        });
-
-        // Scrollspy
-        const ss = document.querySelectorAll('.scrollspy');
-        M.ScrollSpy.init(ss, {});
-
-        // Material Boxed
-        const mb = document.querySelectorAll('.materialboxed');
-        M.Materialbox.init(mb, {});
-
-        // Auto Complete
-        const ac = document.querySelector('.autocomplete');
-        M.Autocomplete.init(ac, {
-            data: {
-                "Aruba": null,
-                "Cancun Mexico": null,
-                "Hawaii": null,
-                "Florida": null,
-                "California": null,
-                "Jamaica": null,
-                "Europe": null,
-                "The Bahamas": null,
-            }
-        });
-
-    </script>
