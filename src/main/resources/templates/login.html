@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
           integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
           crossorigin="anonymous">
+</head>
 <body>
-
 
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form action="#">
+        <form th:action="@{/register}" method="post">
             <h1>Create Account</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -19,14 +19,14 @@
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <span>or use your email for registration</span>
-            <input type="text" placeholder="Name"/>
-            <input type="email" placeholder="Email"/>
-            <input type="password" placeholder="Password"/>
+            <input th:value="${login}" type="text" name="login" placeholder="Login" autofocus required>
+            <input th:value="${email}" type="email" name="email" placeholder="Email" autofocus required/>
+            <input th:value="${password}" type="password" name="password" placeholder="Password" autofocus required/>
             <button>Sign Up</button>
         </form>
     </div>
     <div class="form-container sign-in-container">
-        <form action="#">
+        <form th:action="@{/login}" method="post">
             <h1>Sign in</h1>
             <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -34,10 +34,14 @@
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
             <span>or use your account</span>
-            <input type="email" placeholder="Email"/>
-            <input type="password" placeholder="Password"/>
-            <a href="#">Forgot your password?</a>
-            <button>Sign In</button>
+            <!-- Вывод сообщения об ошибке, если оно есть -->
+            <div th:if="${param.error != null}" class="error-message">
+                <p th:text="${error}"></p>
+            </div>
+            <input th:value="${login}" type="text" name="login" placeholder="Login" autofocus required>
+            <input th:value="${password}" type="password" name="password" placeholder="Password" autofocus required/>
+            <a href="/forgotPassword">Forgot your password?</a>
+            <button type="submit" value="SIGN IN">SIGN IN</button>
         </form>
     </div>
     <div class="overlay-container">
@@ -56,14 +60,11 @@
     </div>
 </div>
 
-
-</body>
-
-
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <!-- Добавьте любые другие скрипты, которые вам нужны для страницы входа -->
 
+</body>
 </html>
 <script>
     const signUpButton = document.getElementById('signUp');
@@ -74,9 +75,23 @@
         container.classList.add('right-panel-active'));
 
     signInButton.addEventListener('click', () =>
-    container.classList.remove('right-panel-active'));
+        container.classList.remove('right-panel-active'));
 </script>
 <style>
+    /* Стилизация контейнера сообщения об ошибке */
+    .error-message {
+        background-color: #f44336; /* Цвет фона */
+        color: white; /* Цвет текста */
+        padding: 10px; /* Внутренний отступ */
+        border-radius: 5px; /* Скругление углов */
+        margin-bottom: 10px; /* Внешний отступ снизу */
+    }
+
+    /* Стилизация текста сообщения об ошибке */
+    .error-message p {
+        margin: 0; /* Убираем внутренний отступ у текста */
+    }
+
     @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
     * {

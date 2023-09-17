@@ -1,10 +1,8 @@
 package com.letsmove.controller;
 
 import com.letsmove.entity.CommentsTour;
-import com.letsmove.entity.Place;
 import com.letsmove.entity.Tour;
 import com.letsmove.entity.Users;
-import com.letsmove.enums.PlaceType;
 import com.letsmove.enums.Role;
 import com.letsmove.enums.Status;
 import com.letsmove.service.CommentsTourService;
@@ -19,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 
 @Controller

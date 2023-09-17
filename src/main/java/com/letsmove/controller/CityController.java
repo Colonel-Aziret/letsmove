@@ -1,7 +1,6 @@
 package com.letsmove.controller;
 
 import com.letsmove.entity.City;
-import com.letsmove.entity.Users;
 import com.letsmove.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,7 @@ public class CityController {
 
     @RequestMapping(value = "/add_city", method = RequestMethod.GET)
     public ModelAndView addCity() {
-        ModelAndView modelAndView = new ModelAndView("addCity");
+        ModelAndView modelAndView = new ModelAndView("addCityOld");
         modelAndView.addObject("city", new City());
         return modelAndView;
     }

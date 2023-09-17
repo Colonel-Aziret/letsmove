@@ -3,7 +3,8 @@ package com.letsmove.enums;
 public enum Status {
     NEW("Новый"),
     ACTIVE("Активное"),
-    UN_ACTIVE("Не активное");
+    UN_ACTIVE("Не активное"),
+    BLOCKED("Заблокирован");
 
     private String name;
 
