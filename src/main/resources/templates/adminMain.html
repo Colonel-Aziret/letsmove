@@ -321,9 +321,9 @@
     </ul>
 
     <div class="col-md-3 text-end">
-        <a class="logout" href="/login">Выйти</a>
-        <!--        <button type="button" href="/login" class="btn btn-primary1">Sign IN</button>
-                <button type="submit" href="/register" class="btn btn-primary2">Sign UP</button>-->
+        <a sec:authorize="isAnonymous()" class="sign-in" href="/login">Войти</a>
+        <a sec:authorize="isAnonymous()" class="sign-up" href="/register">Зарегистрироваться</a>
+        <a sec:authorize="isAuthenticated()" class="logout" href="/logout">Выйти</a>
     </div>
 </header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
