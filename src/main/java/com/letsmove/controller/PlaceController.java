@@ -14,8 +14,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +37,7 @@ public class PlaceController {
     @RequestMapping(value = "/add_place", method = RequestMethod.GET)
     public ModelAndView addPlace() {
         List<String> citiesName = cityService.allCityName();
-        ModelAndView modelAndView = new ModelAndView("addPlace");
+        ModelAndView modelAndView = new ModelAndView("addCity");
         if (authenticatedUser().getRole().equals(Role.ADMIN)) {
             ArrayList<PlaceType> placeTypes = new ArrayList<PlaceType>(Arrays.asList(PlaceType.values()));
             modelAndView.addObject("place", new Place());
@@ -52,8 +54,8 @@ public class PlaceController {
 
 
     @PostMapping(value = "/save_place")
-    public String savePlace(@ModelAttribute(name = "place") Place place, @RequestParam(name = "cityName") String cityName) {
-        placeService.save(place, cityName);
+    public String savePlace(@ModelAttribute(name = "place") Place place, @RequestParam(name = "cityName") String cityName, @RequestParam("imgFile") MultipartFile imgFile) throws IOException {
+        placeService.save(place, cityName, imgFile);
         if (authenticatedUser().getRole().equals(Role.ADMIN)) {
             return "adminMain";
         } else {
@@ -81,7 +83,7 @@ public class PlaceController {
 
     @RequestMapping(value = "/get_all_place", method = RequestMethod.GET)
     public ModelAndView getAllPlace() {
-        ModelAndView modelAndView = new ModelAndView("AllPlace");
+        ModelAndView modelAndView = new ModelAndView("place");
         ArrayList<Place> allActivePlace = (ArrayList<Place>) placeService.getAllActivePlace();
         modelAndView.addObject("allActivePlace", allActivePlace);
         return modelAndView;
@@ -113,7 +115,7 @@ public class PlaceController {
 
     @RequestMapping(value = "/get_all_attraction", method = RequestMethod.GET)
     public ModelAndView getAllAttraction() {
-        ModelAndView modelAndView = new ModelAndView("AllPlace");
+        ModelAndView modelAndView = new ModelAndView("place");
         ArrayList<Place> allActivePlace = (ArrayList<Place>) placeService.allAttraction();
         modelAndView.addObject("allActivePlace", allActivePlace);
         return modelAndView;

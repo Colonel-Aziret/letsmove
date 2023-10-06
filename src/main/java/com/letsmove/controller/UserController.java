@@ -1,9 +1,11 @@
 package com.letsmove.controller;
 
 import com.letsmove.dto.NewPasswordUser;
+import com.letsmove.entity.Place;
 import com.letsmove.entity.Token;
 import com.letsmove.entity.Users;
 import com.letsmove.service.EmailSenderService;
+import com.letsmove.service.PlaceService;
 import com.letsmove.service.TokenService;
 import com.letsmove.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +13,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
+import java.util.List;
 
 
 @Controller
@@ -31,6 +35,8 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private PlaceService placeService;
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -54,17 +60,23 @@ public class UserController {
         return model;
     }
 
+
     @RequestMapping(value = "/userMain", method = RequestMethod.GET)
-    public String hello() {
+    public String userMain(@RequestParam(name = "selectedCity", required = false) String selectedCity, Model model) {
+        // Fetch all places or filtered places based on the selectedCity
+        List<Place> allActivePlace;
+
+        if (selectedCity != null && !selectedCity.isEmpty()) {
+            // Filter places by the selected city
+            allActivePlace = placeService.getByCity(selectedCity);
+        } else {
+            // Fetch all places if no city is selected
+            allActivePlace = placeService.getAllActivePlace();
+        }
+
+        model.addAttribute("allActivePlace", allActivePlace);
         return "userMain";
     }
-
-//    @RequestMapping(value = "/register", method = RequestMethod.GET)
-//    public ModelAndView register() {
-//        ModelAndView modelAndView = new ModelAndView("registration");
-//        modelAndView.addObject("user", new Users());
-//        return modelAndView;
-//    }
 
 
     @PostMapping(value = "/register")
@@ -78,11 +90,23 @@ public class UserController {
         }
     }
 
+
     @RequestMapping(value = "/adminMain", method = RequestMethod.GET)
-    public String adminMain() {
+    public String adminMain(@RequestParam(name = "selectedCity", required = false) String selectedCity, Model model) {
+        // Fetch all places or filtered places based on the selectedCity
+        List<Place> allActivePlace;
+
+        if (selectedCity != null && !selectedCity.isEmpty()) {
+            // Filter places by the selected city
+            allActivePlace = placeService.getByCity(selectedCity);
+        } else {
+            // Fetch all places if no city is selected
+            allActivePlace = placeService.getAllActivePlace();
+        }
+
+        model.addAttribute("allActivePlace", allActivePlace);
         return "adminMain";
     }
-
     @GetMapping(value = "/forgotPassword")
     public String resetPasswordPage() {
         return "forgotPassword";

@@ -18,9 +18,17 @@ public class CommentsTourController {
     @Autowired
     private CommentsTourService commentsTourService;
 
+//    @PostMapping(value = "/save_tour_comment")
+//    public String saveTourComment(@ModelAttribute(name = "commentsTour") CommentsTour commentsTour, @RequestParam(name = "tourID") Integer tourId) {
+//        commentsTourService.save(commentsTour, tourId);
+//        return "redirect:/look_tour?tourId=" + tourId;
+//    }
+
     @PostMapping(value = "/save_tour_comment")
-    public String saveTourComment(@ModelAttribute(name = "commentsTour") CommentsTour commentsTour, @RequestParam(name = "tourID") Integer tourId) {
-        commentsTourService.save(commentsTour, tourId);
+    public String savePlaceComment(@RequestParam(name = "commentText") String commentText, @RequestParam(name = "tourId") Integer tourId) {
+        // Create and save the comment
+        commentsTourService.save(commentText, tourId);
+
         return "redirect:/look_tour?tourId=" + tourId;
     }
 }

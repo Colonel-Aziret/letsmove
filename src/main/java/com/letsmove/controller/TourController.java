@@ -65,7 +65,7 @@ public class TourController {
 
     @RequestMapping(value = "/get_all_tour", method = RequestMethod.GET)
     public ModelAndView getAllTour() {
-        ModelAndView modelAndView = new ModelAndView("AllTours");
+        ModelAndView modelAndView = new ModelAndView("Tours");
         ArrayList<Tour> allActiveTour = tourService.getAllActiveTour();
         modelAndView.addObject("allActiveTour", allActiveTour);
         return modelAndView;

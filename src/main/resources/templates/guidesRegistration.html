@@ -29,13 +29,12 @@
 </head>
 <body>
 <form th:action="@{/guides_registration}" method="post" th:object="${guides}">
-    <section class="vh-100 bg-image"
-             style="background-image: url('https://www.womenbuildingaustralia.com.au/sites/default/files/images/Poly_BG_Grad%20%281%29_0_1.png');">
+
         <div class="mask d-flex align-items-center h-100 gradient-custom-3">
             <div class="container h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                        <div class="card" style="border-radius: 15px;">
+                        <div class="card center-form" style="border-radius: 15px;">
                             <div class="card-body p-5">
                                 <h2 class="text-uppercase text-center mb-5">Стать гидом</h2>
                                 <form>
@@ -55,10 +54,10 @@
                                     </div>
 
                                     <div class="form-outline mb-4">
-                                        <input th:value="${img}" type="url" name="img"
+                                        <input th:value="${img}" type="file" name="img"
                                                id="form5Example1cg"
                                                class="form-control form-control-lg"/>
-                                        <label class="form-label" for="form3Example1cg">IMG url: </label>
+                                        <label class="form-label" for="form3Example1cg">IMG  </label>
                                     </div>
 
                                     <div class="form-outline mb-4">
@@ -82,8 +81,56 @@
                 </div>
             </div>
         </div>
-    </section>
+
 </form>
 
 </body>
 </html>
+<style>
+    .center-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 350%;
+        margin-left: -110%;
+
+
+    }
+    .card.center-form {
+        border-radius: 15px;
+        padding: 20px; /* Add padding to the card */
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+        background-color: white; /* Add a background color */
+    }
+
+    body {
+        background-image: url("https://img.geliophoto.com/bishkek/08_bishkek.jpg");
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: grid;
+        height: 100vh;
+        place-items: center;
+        background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent overlay */
+    }
+    button.btn-success {
+        background-color: #4CAF50; /* Change button color */
+        color: white; /* Change text color */
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px; /* Adjust padding for the button */
+    }
+
+    button.btn-success:hover {
+        background-color: #45a049; /* Change button color on hover */
+    }
+    h2.text-uppercase {
+        font-size: 24px;
+        color: #333; /* Change text color */
+        margin-bottom: 20px; /* Add spacing below the title */
+    }
+
+
+</style>

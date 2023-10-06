@@ -24,12 +24,14 @@ public class CommentsPlaceService {
         return commentsPlaceRepository.findCommentsPlacesByPlaceID(id);
     }
 
-    public void save(CommentsPlace commentsPlace, Integer placeId) {
+    public void save(String commentText, Integer placeId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Users users = userService.findByLogin(authentication.getName());
+        CommentsPlace commentsPlace = new CommentsPlace();
         commentsPlace.setPlaceID(placeService.getPlaceById(placeId));
         commentsPlace.setUsersID(users);
         commentsPlace.setCreatedDate(new Date());
+        commentsPlace.setComment(commentText);
         commentsPlaceRepository.save(commentsPlace);
     }
 }

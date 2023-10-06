@@ -25,11 +25,13 @@ public class CommentsTourService {
         return commentsTourRepository.findAllByTourID(id);
     }
 
-    public void save(CommentsTour commentsTour, Integer tourId) {
+    public void save(String text, Integer tourId) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Users users = userService.findByLogin(authentication.getName());
+        CommentsTour commentsTour = new CommentsTour();
         commentsTour.setTourID(tourService.getTourById(tourId));
         commentsTour.setUsersID(users);
+        commentsTour.setComment(text);
         commentsTour.setCreatedDate(new Date());
         commentsTourRepository.save(commentsTour);
     }

@@ -25,9 +25,9 @@ public class Place {
     @JoinColumn(name = "USER_ID")
     private Users usersID;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CITY_ID")
-    private City cityID;
+
+    @Column(name = "CITY")
+    private String cityID;
 
     @Column(name = "PLACE_NAME")
     private String placeName;

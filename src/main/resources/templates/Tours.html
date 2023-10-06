@@ -8,8 +8,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -47,14 +47,18 @@
                         <a class="white-text" href="/get_all_author_place">Мои места</a>
                     </li>
                     </li>
-
                     <li>
-                        <a class="white-text" href="/check_place">Проверка мест</a>
+                        <a href="/get_all_tour" class="white-text">Туры</a>
                     </li>
                     <li >
-                        <a class="white-text" href="/check_tour">Проверка туров</a>
+                        <a class="white-text" href="/add_tour">Новый тур</a>
                     </li>
-
+                    <li >
+                        <a class="white-text" href="/get_all_author_tour">Мои туры</a>
+                    </li>
+                    <li >
+                        <a class="white-text" href="/history_tour_for_guide">Проведенные туры</a>
+                    </li>
                     <li sec:authorize="isAnonymous()"><a href="/login" class="white-text">Мой профиль</a>
                     </li>
                     <li sec:authorize="hasAuthority('ADMIN')"><a href="/adminMain" class="white-text">Мой
@@ -90,46 +94,33 @@
         <a href="#contact">Contact</a>
     </li>
 </ul>
-
-<form class="form" action="/adminMain" method="get">
-    <div class="input-field">
-        <select name="selectedCity" id="citySelect" class="input select2">
-        </select>
-    </div>
-    <div class="center-align">
-        <input style="margin-top: 20px" type="submit" class="btn btn-outline-success" value="Поиск"/>
-
-    </div>
-</form>
-
-
 <div class="container">
     <div class="row">
 
-        <div th:each="place : ${allActivePlace}" class="product-container">
+        <div th:each="tour:${allActiveTour}" class="product-container">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="product-card">
                             <div class="card-thumbnail">
-                                <img class="img-responsive" th:src="${place.getImg()}">
+                                <img class="img-responsive" th:src="'data:image/png;base64,'+ ${tour.getImg()}">
                             </div>
                             <div class="card-content">
 
-                                <h1 th:text="${place.getPlaceName()}" class="card-title">
+                                <h1 th:text="${tour.getNameTour()}" class="card-title">
 
                                 </h1>
-                                <h2 th:text="${place.getPlaceType().getName()}" class="card-sub-title">
+                                <h2 th:text="${tour.getGuidesID().getFio()}" class="card-sub-title">
 
                                 </h2>
-                                <p th:text="${place.getAddress()}" class="description">
+                                <p th:text="${tour.getInfo()}" class="description">
 
                                 </p>
-                                <p th:text="${place.getRating()}"></p>
+                                <p th:text="${tour.getGuidesID().getPhoneNumber()}"></p>
                                 <ul class="list-inline post-meta">
-                                    <form th:action="@{/look_place}" method="get">
-                                        <input th:value="${place.getId()}" type="number" hidden="hidden"
-                                               name="placeId"/>
+                                    <form th:action="@{/look_tour}" method="get">
+                                        <input th:value="${tour.getId()}" type="number" hidden="hidden"
+                                               name="tourId"/>
                                         <td>
                                             <input type="submit" class="btn btn-outline-success" value="Подробнее"/>
                                         </td>
@@ -147,70 +138,20 @@
             </div>
 
 
+
         </div>
     </div>
 </div>
 </body>
 </html>
-<script>
-    var jq = jQuery.noConflict();
 
-    jq(document).ready(function () {
-        // Массив с городами Кыргызстана
-        const citiesKyrgyzstan = ["Айдаркан", "Балыкчы", "Баткен", "Бишкек", "Жалал-Абад", "Кадамжай", "Кайыңды", "Кант", "Кара-Балта", "Каракол", "Кара-Суу", "Кемин", "Кербен", "Кок-Жаңгак", "Кочкор-Ата", "Кызыл-Кыя", "Майлуу-Суу", "Нарын", "Ноокат", "Орловка", "Ош", "Раззаков", "Сүлүктү", "Талас", "Таш-Көмүр", "Токмок", "Токтогул", "Өзгөн", "Чолпон-Ата", "Шопоков"];
-
-        // Найти элемент select и применить Select2
-        const citySelect = jq("#citySelect");
-        citySelect.select2({
-            data: citiesKyrgyzstan.map(city => ({id: city, text: city})),
-            placeholder: "Выберите город",
-            allowClear: true, // Добавляет кнопку "очистить"
-        });
-    });
-
-
-</script>
 <style>
-
-    .form {
-        max-width: 630px;
-        margin: 40px auto;
-        padding: 20px;
-        background-color: #f7f7f7;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Style for the select element */
-    .input-field select {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        outline: none;
-        text-align: center;
-    }
-
-    /* Style for the submit button */
-    .btn.btn-success {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #28a745;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    /* Hover effect for the submit button */
-    .btn.btn-success:hover {
-        background-color: #218838;
-    }
     /* Стили для звезд */
+    .rating {
+        unicode-bidi: bidi-override;
+        direction: rtl;
 
+    }
 
     .rating > span {
         display: inline-block;
