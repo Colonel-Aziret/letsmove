@@ -12,8 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -35,8 +40,8 @@ public class PlaceService {
     @Autowired
     private ManagerService managerService;
 
-    public void save(Place place, String cityName) {
-        City city = cityService.findByName(cityName);
+    public void save(Place place, String cityName, MultipartFile img) throws IOException {
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Users user = userService.findByLogin(auth.getName());
         if (user.getRole().equals(Role.MANAGER)) {
@@ -44,11 +49,20 @@ public class PlaceService {
             manager.setAllPlaces(manager.getAllPlaces() + 1);
             managerService.update(manager);
         }
-        if (place.getImg().isEmpty()) {
+        if (img != null && !img.isEmpty()) {
+            byte[] imgBytes = img.getBytes();
+            String base64Image = Base64.getEncoder().encodeToString(imgBytes);
+            place.setImg(base64Image);
+        } else {
+            // Обработка ситуации, когда файл не был выбран.
+            // Здесь можно установить значение по умолчанию или выполнить другую логику.
             place.setImg("https://upload.wikimedia.org/wikipedia/commons/9/9a/%D0%9D%D0%B5%D1%82_%D1%84%D0%BE%D1%82%D0%BE.png");
         }
+
+
+
         place.setUsersID(user);
-        place.setCityID(city);
+        place.setCityID(cityName);
         place.setCreatedDate(new Date());
         place.setStatus(Status.NEW);
         place.setRating(0.0);
@@ -59,8 +73,12 @@ public class PlaceService {
         return placeRepository.findAllByStatus(Status.ACTIVE);
     }
 
+    public List<Place> getByCity(String city) {
+        return placeRepository.findByCityID(city);
+    }
+
     public List<Place> getAllNewPlace() {
-        return placeRepository.findAllByStatus(Status.NEW);
+        return placeRepository.findAll();
     }
 
     public void updatePlaceStatus(Integer id, String status) {

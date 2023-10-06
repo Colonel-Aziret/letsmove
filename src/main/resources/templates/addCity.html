@@ -13,17 +13,21 @@
 <div class="container right-panel-active">
   <!-- Sign Up -->
   <div class="container__form container--signup">
-    <form action="#" class="form" id="form1">
+    <form th:action="@{/save_place}" method="post" th:object="${place}" class="form" id="form1" enctype="multipart/form-data">
       <h2 class="form__title">Добавление мест</h2>
-      <select id="citySelect" class="input select2">
+      <select name="cityName" id="citySelect" class="input select2">
       </select>
-      <select id="categorySelect" class="input select2">
+      <select th:value="${placeType}" name="placeType" class="input select2">
+        <option th:each="placeType:${placeTypes}" th:value="${placeType}">
+          <th:block th:text="${placeType.getName()}"></th:block>
+        </option>
       </select>
-      <input type="text" placeholder="Название заведения:" class="input" />
-      <input type="text" id="addressInput" placeholder="Адрес" class="input" />
-      <textarea class="input" placeholder="Информация:"></textarea>
-      <input type="file" placeholder="Картинка" class="input" />
-      <button class="btn">Добавить</button>
+      <input type="text" th:value="${placeName}" name="placeName" placeholder="Название заведения:" class="input" />
+      <input th:value="${address}" name="address" type="text" id="addressInput" placeholder="Адрес" class="input" />
+      <textarea  th:value="${info}" name="info" class="input" placeholder="Информация:"></textarea>
+      <input type="file" name="imgFile" class="input" />
+      <button class="btn">Добавить</button> <p><a th:href="@{/managerMain}"><u>Отмена
+    </u></a></p>
     </form>
   </div>
 

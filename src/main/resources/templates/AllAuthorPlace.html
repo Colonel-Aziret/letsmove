@@ -234,37 +234,132 @@
 
 </style>
 <body>
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <img class="logo"
-             src="https://thumbs.dreamstime.com/z/kyrgyzstan-low-poly-logo-colorful-gradient-travel-country-geometric-style-multicolored-polygonal-rounded-sign-map-153634759.jpg"
-             width="70" height="50" alt="">
-        <p class="big-text">LET'S MOVE</p>
-    </a>
+<style>
+    table {
+        margin: auto;
+    }
 
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="/get_all_attraction" class="nav-link px-2 link-dark">Достопримечательности</a></li>
-        <li><a href="/get_all_place" class="nav-link px-2 link-dark">Заведения</a></li>
-        <li><a href="/get_all_tour" class="nav-link px-2 link-dark">Туры</a></li>
-        <li sec:authorize="isAnonymous()"><a href="/login" class="nav-link px-2 link-dark">Мой профиль</a></li>
-        <li sec:authorize="hasAuthority('ADMIN')"><a href="/adminMain" class="nav-link px-2 link-dark">Мой профиль</a>
-        </li>
-        <li sec:authorize="hasAuthority('MANAGER')"><a href="/managerMain" class="nav-link px-2 link-dark">Мой
-            профиль</a></li>
-        <li sec:authorize="hasAuthority('GUIDE')"><a href="/guideMain" class="nav-link px-2 link-dark">Мой профиль</a>
-        </li>
-        <li sec:authorize="hasAuthority('USER')"><a href="/userMain" class="nav-link px-2 link-dark">Мой профиль</a>
-        </li>
+    .sign-up {
+        background-color: white;
+        border: none;
+        color: black;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+    }
 
-    </ul>
+    .sign-up:hover {
+        background-color: #38b37b;
+        color: black;
+    }
 
-    <div class="col-md-3 text-end">
-        <a sec:authorize="isAnonymous()" class="sign-in" href="/login">Войти</a>
-        <a sec:authorize="isAnonymous()" class="sign-up" href="/register">Зарегистрироваться</a>
-        <a sec:authorize="isAuthenticated()" class="logout" href="/logout">Выйти</a>
-    </div>
-</header>
-<main>
+    .sign-in {
+        background-color: white;
+        border: none;
+        color: black;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+    }
+
+    .sign-in:hover {
+        background-color: #008CBA; /* Green */
+        color: black;
+    }
+
+    .logout {
+        background-color: white;
+        border: none;
+        color: black;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 12px;
+    }
+
+    .logout:hover {
+        background-color: #f44336;
+        color: black;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Add Materialize JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<div class="navbar-fixed">
+    <nav style="background-color: #09181F;">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo white-text">LET'S MOVE</a>
+
+
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <a href="/get_all_attraction" class="white-text">Достопримечательности</a>
+                    </li>
+                    <li>
+                        <a href="/get_all_place" class="white-text">Заведения</a>
+                    </li>
+                    <li>
+                        <a href="/get_all_tour" class="white-text">Туры</a>
+                    </li>
+                    <li>
+                        <a href="/add_place" class="white-text">Новое место</a>
+                    </li>
+                    <li>
+                        <a href="/check_place" class="white-text">Проверка мест</a>
+
+                    </li>
+
+                    <li>
+                        <a class="white-text" href="/check_tour">Проверка туров</a>
+                    </li>
+                    <li>
+                        <a class="white-text" href="/get_all_author_place">Мои места</a>
+                    </li>
+                    </li>
+                    <li>
+                        <a href="/get_all_tour" class="white-text">Туры</a>
+                    </li>
+
+                    <!--            <li sec:authorize="isAnonymous()"><a href="/login" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
+                    <!--            <li sec:authorize="hasAuthority('ADMIN')"><a href="/adminMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
+                    <!--            <li sec:authorize="hasAuthority('MANAGER')"><a href="/managerMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
+                    <!--            <li sec:authorize="hasAuthority('GUIDE')"><a href="/guideMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
+                    <!--            <li sec:authorize="hasAuthority('USER')"><a href="/userMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<ul class="sidenav" id="mobile-demo">
+    <li>
+        <a href="#home">Новое место</a>
+    </li>
+    <li>
+        <a href="#search">Search</a>
+    </li>
+    <li>
+        <a href="#popular">Popular Places</a>
+    </li>
+    <li>
+        <a href="#gallery">Gallery</a>
+    </li>
+    <li>
+        <a href="#contact">Contact</a>
+    </li>
+</ul><main>
     <div class="album py-5 bg-light">
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -299,14 +394,6 @@
     </div>
 </main>
 
-<footer class="text-muted py-5">
-    <div class="container">
-        <p class="float-end mb-1">
-            <a href="#">Вернуться на вверх</a>
-        </p>
-        <p class="mb-0">Хотите перейти на главную страницу ---> &nbsp<a href="/">Перейти</a></p>
-    </div>
-</footer>
 
 
 <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js"

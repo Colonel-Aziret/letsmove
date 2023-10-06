@@ -25,4 +25,6 @@ public interface PlaceRepository extends JpaRepository<Place, Integer> {
 
     @Transactional
     List<Place> findPlacesByStatusAndUsersID(Status status, Users users);
+
+    List<Place> findByCityID(String city);
 }

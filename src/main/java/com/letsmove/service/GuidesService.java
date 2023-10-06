@@ -23,6 +23,7 @@ public class GuidesService {
         if (guides.getImg().isEmpty()) {
             guides.setImg("https://w7.pngwing.com/pngs/841/727/png-transparent-computer-icons-user-profile-synonyms-and-antonyms-android-android-computer-wallpaper-monochrome-sphere.png");
         }
+
         guides.setUsersID(users);
         guides.setAllTour(0);
         users.setRole(Role.GUIDE);
