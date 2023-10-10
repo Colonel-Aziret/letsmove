@@ -116,7 +116,7 @@
                     <div class="col-sm-4">
                         <div class="product-card">
                             <div class="card-thumbnail">
-                                <img class="img-responsive" th:src="${place.getImg()}">
+                                <img class="img-responsive" th:src="'data:image/png;base64,'+${place.getImg()}">
                             </div>
                             <div class="card-content">
 

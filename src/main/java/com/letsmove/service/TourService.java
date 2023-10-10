@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
@@ -30,11 +33,17 @@ public class TourService {
     @Autowired
     private HistoryTourService historyTourService;
 
-    public Tour save(Tour tour) {
+    public Tour save(Tour tour, MultipartFile img) throws IOException {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Users user = userService.findByLogin(auth.getName());
         Guides guides = guidesService.findByUserID(user);
-        if (tour.getImg().isEmpty()) {
+        if (img != null && !img.isEmpty()) {
+            byte[] imgBytes = img.getBytes();
+            String base64Image = Base64.getEncoder().encodeToString(imgBytes);
+            tour.setImg(base64Image);
+        } else {
+            // Обработка ситуации, когда файл не был выбран.
+            // Здесь можно установить значение по умолчанию или выполнить другую логику.
             tour.setImg("https://upload.wikimedia.org/wikipedia/commons/9/9a/%D0%9D%D0%B5%D1%82_%D1%84%D0%BE%D1%82%D0%BE.png");
         }
         tour.setGuidesID(guides);

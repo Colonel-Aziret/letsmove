@@ -366,7 +366,7 @@
                 <tr th:each="place:${allAuthorPlace}">
                     <div class="col" style="height: 600px">
                         <div class="card shadow-sm">
-                            <img th:src="${place.getImg()}" height="225" width="100%">
+                            <img th:src="'data:image/png;base64,'+${place.getImg()}" height="225" width="100%">
                             <div class="card-body">
                                 <h5 class="card-title" th:text="${place.getPlaceName()}"></h5>
                                 <p class="card-text" th:text="${place.getInfo()}"></p>

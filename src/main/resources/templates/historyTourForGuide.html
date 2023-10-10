@@ -178,7 +178,7 @@
         </thead>
         <tbody>
         <tr th:each="historyTour:${guideHistoryTours}">
-            <td><img th:src="${historyTour.getTourID().getImg()}" height="100" width="100"></td>
+            <td><img th:src="'data:image/png;base64,'+${historyTour.getTourID().getImg()}" height="100" width="100"></td>
             <td th:text="${historyTour.getTourID().getNameTour()}"></td>
             <td th:text="${historyTour.getUsersID().getLogin()}"></td>
             <td th:text="${historyTour.getUsersID().getEmail()}"></td>

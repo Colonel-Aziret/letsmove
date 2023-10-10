@@ -13,8 +13,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -37,9 +39,9 @@ public class TourController {
 
 
     @PostMapping(value = "/save_tour")
-    public String saveTour(@ModelAttribute(name = "tour") Tour tour) {
+    public String saveTour(@ModelAttribute(name = "tour") Tour tour, @RequestParam("imgFile") MultipartFile imgFile) throws IOException {
         try {
-            tourService.save(tour);
+            tourService.save(tour, imgFile);
             return "guideMain";
         } catch (Exception e) {
             return "redirect:/add_tour";

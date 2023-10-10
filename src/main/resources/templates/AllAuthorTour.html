@@ -151,7 +151,7 @@
         <tr th:each="tour:${allAuthorTour}">
           <div class="col" style="height: 600px">
             <div class="card shadow-sm">
-              <img th:src="${tour.getImg()}" height="225" width="100%">
+              <img th:src="'data:image/png;base64,'+${tour.getImg()}" height="225" width="100%">
               <div class="card-body">
                 <h5 class="card-title" th:text="${tour.getNameTour()}"></h5>
                 <p class="card-text" th:text="${tour.getInfo()}"></p>

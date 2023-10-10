@@ -74,6 +74,7 @@ public class PlaceController {
     }
 
 
+
     @PostMapping(value = "/save_active_place")
     public String addActivePlace(@RequestParam(name = "placeId") Integer placeId, @RequestParam(name = "status") String status) {
         placeService.updatePlaceStatus(placeId, status);
