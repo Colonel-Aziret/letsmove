@@ -37,7 +37,7 @@
                    autofocus required/>
             <input th:value="${info}" type="text" placeholder="Информация:" name="info" class="input" autofocus
                    required></textarea>
-            <input th:value="${img}" type="file" placeholder="Картинка" name="img" class="input"/>
+            <input type="file" name="imgFile" class="input" />
             <button type="submit" value="Добавить" class="btn">Добавить</button>
             <p><a th:href="@{/managerMain}"><u>Отмена
             </u></a></p>

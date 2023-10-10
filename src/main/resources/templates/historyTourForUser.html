@@ -180,7 +180,7 @@
         </thead>
         <tbody>
         <tr th:each="historyTour:${userHistoryTours}">
-            <td><img th:src="${historyTour.getTourID().getImg()}" height="100" width="100"></td>
+            <td><img th:src="'data:image/png;base64,'+${historyTour.getTourID().getImg()}" height="100" width="100"></td>
             <td th:text="${historyTour.getTourID().getNameTour()}"></td>
             <td th:text="${historyTour.getUsersID().getLogin()}"></td>
             <td><img th:src="${historyTour.getTourID().getGuidesID().getImg()}" height="100" width="100"></td>
