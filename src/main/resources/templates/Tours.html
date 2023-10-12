@@ -21,14 +21,13 @@
 
 
 <div class="navbar-fixed">
-    <nav style="background-color: #09181F;">
+    <nav style="background-color: #09181F;" >
         <div class="container">
-
             <div class="nav-wrapper">
+                <a href="#!" class="brand-logo white-text">LET'S MOVE</a>
 
 
-                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i
-                        class="material-icons white-text">menu</i></a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons white-text">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li>
                         <a href="/get_all_attraction" class="white-text">Достопримечательности</a>
@@ -39,38 +38,11 @@
                     <li>
                         <a href="/get_all_tour" class="white-text">Туры</a>
                     </li>
-                    <li>
-                        <a href="/add_place" class="white-text">Новое место</a>
-                    </li>
-
-                    <li>
-                        <a class="white-text" href="/get_all_author_place">Мои места</a>
-                    </li>
-                    </li>
-                    <li>
-                        <a href="/get_all_tour" class="white-text">Туры</a>
-                    </li>
-                    <li >
-                        <a class="white-text" href="/add_tour">Новый тур</a>
-                    </li>
-                    <li >
-                        <a class="white-text" href="/get_all_author_tour">Мои туры</a>
-                    </li>
-                    <li >
-                        <a class="white-text" href="/history_tour_for_guide">Проведенные туры</a>
-                    </li>
-                    <li sec:authorize="isAnonymous()"><a href="/login" class="white-text">Мой профиль</a>
-                    </li>
-                    <li sec:authorize="hasAuthority('ADMIN')"><a href="/adminMain" class="white-text">Мой
-                        профиль</a></li>
-                    <li sec:authorize="hasAuthority('MANAGER')"><a href="/managerMain" class="white-text">Мой
-                        профиль</a></li>
-                    <li sec:authorize="hasAuthority('GUIDE')"><a href="/guideMain" class="white-text">Мой
-                        профиль</a></li>
-                    <li sec:authorize="hasAuthority('USER')"><a href="/userMain" class="white-text">Мой
-                        профиль</a></li>
-
-
+                    <li sec:authorize="isAnonymous()"><a href="/login" class="white-text">Мой профиль</a></li>
+                    <li sec:authorize="hasAuthority('ADMIN')"><a href="/adminMain" class="white-text">Мой профиль</a></li>
+                    <li sec:authorize="hasAuthority('MANAGER')"><a href="/managerMain" class="white-text">Мой профиль</a></li>
+                    <li sec:authorize="hasAuthority('GUIDE')"><a href="/guideMain" class="white-text">Мой профиль</a></li>
+                    <li sec:authorize="hasAuthority('USER')"><a href="/userMain" class="white-text">Мой профиль</a></li>
                 </ul>
             </div>
         </div>
@@ -79,7 +51,7 @@
 
 <ul class="sidenav" id="mobile-demo">
     <li>
-        <a href="#home">Новое место</a>
+        <a href="#home">Home</a>
     </li>
     <li>
         <a href="#search">Search</a>
@@ -94,6 +66,7 @@
         <a href="#contact">Contact</a>
     </li>
 </ul>
+
 <div class="container">
     <div class="row">
 

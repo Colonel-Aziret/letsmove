@@ -1,6 +1,7 @@
 package com.letsmove.controller;
 
 import com.letsmove.dto.NewPasswordUser;
+import com.letsmove.entity.Guides;
 import com.letsmove.entity.Place;
 import com.letsmove.entity.Token;
 import com.letsmove.entity.Users;
@@ -41,6 +42,7 @@ public class UserController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String login() {
+
         return "rev";
     }
 

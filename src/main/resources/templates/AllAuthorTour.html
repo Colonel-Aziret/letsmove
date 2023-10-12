@@ -77,7 +77,7 @@
 <!-- Add Materialize JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <div class="navbar-fixed">
-  <nav style="background-color: #09181F;">
+  <nav style="background-color: #09181F;" >
     <div class="container">
       <div class="nav-wrapper">
         <a href="#!" class="brand-logo white-text">LET'S MOVE</a>
@@ -94,30 +94,11 @@
           <li>
             <a href="/get_all_tour" class="white-text">Туры</a>
           </li>
-          <li>
-            <a href="/add_place" class="white-text">Новое место</a>
-          </li>
-          <li>
-            <a href="/check_place" class="white-text">Проверка мест</a>
-
-          </li>
-
-          <li>
-            <a class="white-text" href="/check_tour">Проверка туров</a>
-          </li>
-          <li>
-            <a class="white-text" href="/get_all_author_place">Мои места</a>
-          </li>
-          </li>
-          <li>
-            <a href="/get_all_tour" class="white-text">Туры</a>
-          </li>
-
-          <!--            <li sec:authorize="isAnonymous()"><a href="/login" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
-          <!--            <li sec:authorize="hasAuthority('ADMIN')"><a href="/adminMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
-          <!--            <li sec:authorize="hasAuthority('MANAGER')"><a href="/managerMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
-          <!--            <li sec:authorize="hasAuthority('GUIDE')"><a href="/guideMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
-          <!--            <li sec:authorize="hasAuthority('USER')"><a href="/userMain" class="nav-link px-2 link-dark">Мой профиль</a></li>-->
+          <li sec:authorize="isAnonymous()"><a href="/login" class="white-text">Мой профиль</a></li>
+          <li sec:authorize="hasAuthority('ADMIN')"><a href="/adminMain" class="white-text">Мой профиль</a></li>
+          <li sec:authorize="hasAuthority('MANAGER')"><a href="/managerMain" class="white-text">Мой профиль</a></li>
+          <li sec:authorize="hasAuthority('GUIDE')"><a href="/guideMain" class="white-text">Мой профиль</a></li>
+          <li sec:authorize="hasAuthority('USER')"><a href="/userMain" class="white-text">Мой профиль</a></li>
         </ul>
       </div>
     </div>
@@ -126,7 +107,7 @@
 
 <ul class="sidenav" id="mobile-demo">
   <li>
-    <a href="#home">Новое место</a>
+    <a href="#home">Home</a>
   </li>
   <li>
     <a href="#search">Search</a>
@@ -141,6 +122,7 @@
     <a href="#contact">Contact</a>
   </li>
 </ul>
+
 <body>
 
 
